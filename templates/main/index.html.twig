@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container">
+{% for message in app.flashes('notice')%}
+<div class="alert alert_success">
+{{message}}
+</div>
+{% endfor %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Auteur</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for data in list %}
+    <tr>
+      <th scope="row">{{data.id}}</th>
+      <td>{{data.titre}}</td>
+      <td>{{data.description}}</td>
+      <td>{{data.auteur}}</td>
+      <td>{{data.prix}}</td>
+      <td>
+            <a class="btn btn-warning" href="{{path('update',{'id':data.id})}}">Update</a>
+            <a class="btn btn-danger" href="{{path('delete',{'id':data.id})}}">Delete</a>
+
+      </td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
